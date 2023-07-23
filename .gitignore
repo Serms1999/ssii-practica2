@@ -1,3 +1,6 @@
 # Remove IDE config
 .vscode/
 .idea/
+
+# CMake Files
+cmake-build-debug/
