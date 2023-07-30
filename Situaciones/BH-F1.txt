@@ -1,0 +1,5 @@
+4
+Diametro = 3
+Forma = Redonda
+NSemillas = 1
+Color = Rojo

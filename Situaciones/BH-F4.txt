@@ -1,0 +1,6 @@
+5
+ClaseFrutal = Arbol
+Color = Naranja
+Forma = Redonda
+NSemillas = 1
+Diametro = 6

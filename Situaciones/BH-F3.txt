@@ -1,0 +1,5 @@
+4
+Forma = Redonda
+NSemillas = 2
+Diametro = 11
+Color = Verde

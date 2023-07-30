@@ -1,0 +1,6 @@
+5
+Mes = Diciembre
+Estacion = Humeda
+Precipitaciones = Ninguna
+Prediccion = Nuboso
+Profundidad = 4

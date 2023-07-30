@@ -1,0 +1,32 @@
+ATRIBUTOS
+8
+Forma Nom {Larga,Redonda,Ensanchada}
+Color Nom {Verde,Amarillo,Tostado,Naranja,Rojo,Morado}
+Fruta Nom {Platano,Sandia,Melon,Cantalupo,Albaricoque,Cereza,Manzana,Melocoton,Ciruela,Naranja}
+Diametro NU 
+ClaseFrutal Nom {Emparrado,Arbol}
+NSemillas NU 
+TipoSemilla Nom {Hueso,Multiple}
+Superficie Nom {Lisa,Rugosa}
+OBJETIVO
+Fruta
+PRIORIDADES-REGLAS
+18
+0
+10
+0
+0
+0
+0
+10
+10
+10
+10
+10
+10
+10
+10
+10
+10
+10
+10

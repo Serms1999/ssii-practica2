@@ -1,4 +1,4 @@
-#include "Funciones.h"
+#include "Funciones.hpp"
 
 extern string dominio;
 extern list<antecedente> hechos;

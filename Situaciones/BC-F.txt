@@ -1,0 +1,20 @@
+IDENTIFICACION DE FRUTAS
+18
+R1: Si NSemillas > 1 Entonces TipoSemilla = Multiple
+R2: Si Forma = Larga y Color = Amarillo Entonces Fruta = Platano
+R3: Si Forma = Redonda y Diametro >= 10 Entonces ClaseFrutal = Emparrado
+R4: Si Forma = Ensanchada y Diametro >= 10 Entonces ClaseFrutal = Emparrado
+R5: Si Forma = Redonda y Diametro < 10 Entonces ClaseFrutal = Arbol
+R6: Si NSemillas = 1 Entonces TipoSemilla = Hueso
+R7: Si Forma = Larga y Color = Verde Entonces Fruta = Platano
+R8: Si ClaseFrutal = Emparrado y Color = Verde Entonces Fruta = Sandia
+R9: Si ClaseFrutal = Emparrado y Superficie = Lisa y Color = Amarillo Entonces Fruta = Melon
+R10: Si ClaseFrutal = Emparrado y Superficie = Rugosa y Color = Tostado Entonces Fruta = Cantalupo
+R11: Si ClaseFrutal = Arbol y Color = Naranja y TipoSemilla = Hueso Entonces Fruta = Albaricoque
+R12: Si ClaseFrutal = Arbol y Color = Naranja y TipoSemilla = Multiple Entonces Fruta = Naranja
+R13: Si ClaseFrutal = Arbol y Color = Rojo y TipoSemilla = Hueso Entonces Fruta = Cereza
+R14: Si ClaseFrutal = Arbol y Color = Rojo y TipoSemilla = Multiple Entonces Fruta = Manzana
+R15: Si ClaseFrutal = Arbol y Color = Amarillo y TipoSemilla = Multiple Entonces Fruta = Manzana
+R16: Si ClaseFrutal = Arbol y Color = Verde y TipoSemilla = Multiple Entonces Fruta = Manzana
+R17: Si ClaseFrutal = Arbol y Color = Naranja y TipoSemilla = Hueso Entonces Fruta = Melocoton
+R18: Si ClaseFrutal = Arbol y Color = Morado y TipoSemilla = Hueso Entonces Fruta = Ciruela

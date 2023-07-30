@@ -1,0 +1,5 @@
+4
+Mes = Junio
+Precipitaciones = Ninguna
+Nivel = Alto
+Lluvia = Fuerte

@@ -1,0 +1,5 @@
+4
+Mes = Enero
+Precipitaciones = Fuertes
+Profundidad = 10
+Prediccion = Tormenta

@@ -1,4 +1,4 @@
-#include "Funciones.h"
+#include "Funciones.hpp"
 
 //Variables globales
 list<string> reglasString;

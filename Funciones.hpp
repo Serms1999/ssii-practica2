@@ -1,5 +1,5 @@
 #include <algorithm>
-#include "leerFicheros.h"
+#include "leerFicheros.hpp"
 
 // Lee los ficheros con la base de conocimiento, base de hechos y el fichero de configuracion
 void leer(string BC, string BH, string conf);

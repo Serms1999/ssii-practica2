@@ -1,0 +1,34 @@
+DETECCION DE INUNDACIONES
+32
+R1: Si Mes = Junio Entonces Estacion = Seca
+R2: Si Mes = Julio Entonces Estacion = Seca
+R3: Si Mes = Agosto Entonces Estacion = Seca
+R4: Si Mes = Septiembre Entonces Estacion = Humeda
+R5: Si Mes = Octubre Entonces Estacion = Humeda
+R6: Si Mes = Noviembre Entonces Estacion = Humeda
+R7: Si Mes = Diciembre Entonces Estacion = Humeda
+R8: Si Mes = Enero Entonces Estacion = Humeda
+R9: Si Mes = Febrero Entonces Estacion = Humeda
+R10: Si Mes = Marzo Entonces Estacion = Humeda
+R11: Si Mes = Abril Entonces Estacion = Humeda
+R12: Si Mes = Mayo Entonces Estacion = Humeda
+R13: Si Precipitaciones = Ninguna y Estacion = Seca Entonces Cambio = Bajando
+R14: Si Precipitaciones = Ninguna y Estacion = Humeda Entonces Cambio = Ninguno
+R15: Si Precipitaciones = Ligera Entonces Cambio = Ninguno
+R16: Si Precipitaciones = Fuertes Entonces Cambio = Subiendo
+R17: Si Profundidad < 3 Entonces Nivel = Bajo
+R18: Si Profundidad >= 3 y Profundidad <= 5 Entonces Nivel = Normal
+R19: Si Profundidad > 5 Entonces Nivel = Alto
+R20: Si Prediccion = Soleado Entonces Lluvia = Ninguna
+R21: Si Prediccion = Nuboso Entonces Lluvia = Ligera
+R22: Si Prediccion = Tormenta Entonces Lluvia = Fuerte
+R23: Si Nivel = Bajo Entonces Inundacion = No
+R24: Si Cambio = Ninguno y Nivel = Normal Entonces Inundacion = No
+R25: Si Cambio = Ninguno y Nivel = Bajo Entonces Inundacion = No
+R26: Si Cambio = Subiendo y Nivel = Normal Entonces Inundacion = No
+R27: Si Cambio = Subiendo y Nivel = Bajo Entonces Inundacion = No
+R28: Si Cambio = Subiendo y Nivel = Normal y Lluvia = Fuerte Entonces Inundacion = Si
+R29: Si Cambio = Subiendo y Nivel = Normal y Lluvia = Ligera Entonces Inundacion = No
+R30: Si Cambio = Subiendo y Nivel = Alto y Lluvia = Ninguna Entonces Inundacion = Si
+R31: Si Cambio = Subiendo y Nivel = Alto y Lluvia = Ligera Entonces Inundacion = Si
+R32: Si Cambio = Subiendo y Nivel = Alto y Lluvia = Fuerte Entonces Inundacion = Si
