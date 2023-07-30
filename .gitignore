@@ -4,3 +4,12 @@
 
 # CMake Files
 cmake-build-debug/
+
+# Output folder
+Ficheros\ Salida/
+
+# Windows Executable
+Practica2.exe
+
+# Unix Executable
+Practica2
