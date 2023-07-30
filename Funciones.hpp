@@ -5,40 +5,40 @@
 void leer(string BC, string BH, string conf);
 
 // Elimina los elementos de la segunda lista de la primera
-void diferenciaConjuntos(list<regla>& conjuntoConflicto, list<regla> reglasAplicadas);
+void diferenciaConjuntos(list<Regla>& conjuntoConflicto, list<Regla> reglasAplicadas);
 
 // Incluye los elementos de la segunda lista en la primera si no estan previamente
-void unionConjuntos(list<regla>& conjuntoConflicto, list<regla> equiparacion);
+void unionConjuntos(list<Regla>& conjuntoConflicto, list<Regla> equiparacion);
 
 // Incluye una consecuencia a la base de hechos si no esta previamente
-void addConsecuencia(list<antecedente>& BH, consecuente p);
+void addConsecuencia(list<Antecedente>& BH, Consecuente p);
 
-// Dado el nombre busca en la estructura atributo correspondiente
-atributo* buscarAtributo(string nombre);
+// Dado el nombre busca en la estructura Atributo correspondiente
+Atributo* buscarAtributo(string nombre);
 
-// Comprueba si el valor de un atributo nominal pertenece a los valores
-// declarados de ese atributo
+// Comprueba si el valor de un Atributo nominal pertenece a los valores
+// declarados de ese Atributo
 bool comprobarValorNominal(string valor, list<string>& valores);
 
-// Comprueba si una antecedente es cierta o falsa
-bool comprobarAntecedente(antecedente hecho, list<antecedente> antecedentes);
+// Comprueba si una Antecedente es cierta o falsa
+bool comprobarAntecedente(Antecedente hecho, list<Antecedente> antecedentes);
 
-// Comprueba si el atributo objetivo esta en la base de hechos
-bool contenida(string meta, list<antecedente> hechos);
+// Comprueba si el Atributo objetivo esta en la base de hechos
+bool contenida(string meta, list<Antecedente> hechos);
 
 // Devuelve las reglas que se pueden aplicar a traves de unos hechos
-list<regla> equiparar(list<regla> reglas, list<antecedente> hechos);
+list<Regla> equiparar(list<Regla> reglas, list<Antecedente> hechos);
 
-// Devuelve la regla a aplicar
-regla resolver(list<regla>& conjuntoConflicto);
+// Devuelve la Regla a aplicar
+Regla resolver(list<Regla>& conjuntoConflicto);
 
-// Devuelve la regla n como string
+// Devuelve la Regla n como string
 string getRegla(int n);
 
 // Devuelve la base de hechos inicial
-list<antecedente> getBH();
+list<Antecedente> getBH();
 
 // Elimina las reglas innecesarias de la solucion
-void reconstruirSolucion(list<regla>& reglasAplicadas);
+void reconstruirSolucion(list<Regla>& reglasAplicadas);
 
-list<regla> SBR();
+list<Regla> SBR();

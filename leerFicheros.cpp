@@ -11,7 +11,7 @@ string dominio;
 string nombreBH;
 
 void leerFicheros(string BC, string BH, string conf,
-	list<regla> & reglas, list<string>& reglasString, list<atributo> & atributos, list<antecedente> & hechos, string& objetivo)
+                  list<Regla> & reglas, list<string>& reglasString, list<Atributo> & atributos, list<Antecedente> & hechos, string& objetivo)
 {
 	leerBaseConocimiento(BC, reglas, reglasString);
 	leerBaseHechos(BH, hechos);
@@ -33,12 +33,12 @@ operation stringToOP(string s)
 	else return igual;
 }
 
-string consecuenteToString(consecuente c)
+string consecuenteToString(Consecuente c)
 {
 	return c.izq + " = " + c.der;
 }
 
-void leerAntecedente(antecedente& p, string s)
+void leerAntecedente(Antecedente& p, string s)
 {
 	if (regex_search(s, match, patAntecedentes))
 	{
@@ -50,7 +50,7 @@ void leerAntecedente(antecedente& p, string s)
 	}
 }
 
-void leerBaseConocimiento(string fichero, list<regla>& reglas, list<string>& reglasString)
+void leerBaseConocimiento(string fichero, list<Regla>& reglas, list<string>& reglasString)
 {
 	ifstream fichEntrada(fichero);
 	string linea;
@@ -67,8 +67,8 @@ void leerBaseConocimiento(string fichero, list<regla>& reglas, list<string>& reg
 	
 	for (int i = 1; i <= numReglas; i++)
 	{
-		regla r;
-		getline(fichEntrada,linea);	// Lee la regla i;
+		Regla r;
+		getline(fichEntrada,linea);	// Lee la Regla i;
 		reglasString.push_back(linea);
 		r.numRegla = i;
 
@@ -81,7 +81,7 @@ void leerBaseConocimiento(string fichero, list<regla>& reglas, list<string>& reg
 			string consecuncia = match.str(5);
 			leerAntecedente(r.consecuente, consecuncia);
 
-			antecedente p;
+			Antecedente p;
 			// Procesamos los antecedentes
 			while (regex_search(antecedentes, match, patAntecedentes))
 			{
@@ -100,7 +100,7 @@ void leerBaseConocimiento(string fichero, list<regla>& reglas, list<string>& reg
 	fichEntrada.close();
 }
 
-void leerBaseHechos(string fichero, list<antecedente>& hechos)
+void leerBaseHechos(string fichero, list<Antecedente>& hechos)
 {
 	ifstream fichEntrada(fichero);
 	string linea;
@@ -119,7 +119,7 @@ void leerBaseHechos(string fichero, list<antecedente>& hechos)
 	getline(fichEntrada, linea);	// Lee el numero de hechos
 	int numHechos = stoi(linea);
 
-	antecedente h;
+	Antecedente h;
 	for (int i = 0; i < numHechos; i++)
 	{
 		getline(fichEntrada, linea);
@@ -130,7 +130,7 @@ void leerBaseHechos(string fichero, list<antecedente>& hechos)
 	fichEntrada.close();
 }
 
-void leerFicheroConf(string fichero, list<atributo>& atributos, string& objetivo, list<regla>& reglas)
+void leerFicheroConf(string fichero, list<Atributo>& atributos, string& objetivo, list<Regla>& reglas)
 {
     ifstream fichEntrada(fichero);
     string linea;
@@ -146,7 +146,7 @@ void leerFicheroConf(string fichero, list<atributo>& atributos, string& objetivo
     fichEntrada >> nAtributos;  // Lee el numero de atributos
     for(int i = 0; i < nAtributos; i++)
     {
-        atributo atrb;
+        Atributo atrb;
         fichEntrada >> atrb.nombre;
 		convertirMayusculas(atrb.nombre);
         string tipo;
@@ -158,7 +158,7 @@ void leerFicheroConf(string fichero, list<atributo>& atributos, string& objetivo
         else if(tipo == "Nom")
         {
             atrb.tipo = Nom;
-            fichEntrada >> linea;   // Lee los valores del atributo nominal
+            fichEntrada >> linea;   // Lee los valores del Atributo nominal
             
             while(regex_search(linea,match,patAtr))
             {
@@ -177,7 +177,7 @@ void leerFicheroConf(string fichero, list<atributo>& atributos, string& objetivo
 	fichEntrada >> linea;	// Lee "PRIORIDADES-REGLAS"
 	fichEntrada >> linea;	// Lee el numero de reglas
 	
-	list<regla>::iterator itReglas;
+	list<Regla>::iterator itReglas;
 
 	for (itReglas = reglas.begin(); itReglas != reglas.end(); itReglas++)
 	{

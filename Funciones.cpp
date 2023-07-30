@@ -2,9 +2,9 @@
 
 //Variables globales
 list<string> reglasString;
-list<regla> reglas;
-static list<atributo> atributos;
-list<antecedente> hechos;
+list<Regla> reglas;
+static list<Atributo> atributos;
+list<Antecedente> hechos;
 string objetivo;
 
 void leer(string BC, string BH, string conf)
@@ -12,9 +12,9 @@ void leer(string BC, string BH, string conf)
 	leerFicheros(BC, BH, conf, reglas, reglasString, atributos, hechos, objetivo);
 }
 
-void diferenciaConjuntos(list<regla>& conjuntoConflicto, list<regla> reglasAplicadas)
+void diferenciaConjuntos(list<Regla>& conjuntoConflicto, list<Regla> reglasAplicadas)
 {
-	list<regla>::iterator itLista;
+	list<Regla>::iterator itLista;
 
 	for (itLista = reglasAplicadas.begin(); itLista != reglasAplicadas.end(); itLista++)
 	{
@@ -22,9 +22,9 @@ void diferenciaConjuntos(list<regla>& conjuntoConflicto, list<regla> reglasAplic
 	}
 }
 
-void unionConjuntos(list<regla>& conjuntoConflicto, list<regla> equiparacion)
+void unionConjuntos(list<Regla>& conjuntoConflicto, list<Regla> equiparacion)
 {
-	list<regla>::iterator it;
+	list<Regla>::iterator it;
 	for (it = equiparacion.begin(); it != equiparacion.end(); it++)
 	{
 		if (!(find(conjuntoConflicto.begin(), conjuntoConflicto.end(), *it) != conjuntoConflicto.end()))
@@ -34,7 +34,7 @@ void unionConjuntos(list<regla>& conjuntoConflicto, list<regla> equiparacion)
 	}
 }
 
-void addConsecuencia(list<antecedente>& BH, consecuente p)
+void addConsecuencia(list<Antecedente>& BH, Consecuente p)
 {
 	if (!(find(BH.begin(), BH.end(), p) != BH.end()))
 	{
@@ -42,9 +42,9 @@ void addConsecuencia(list<antecedente>& BH, consecuente p)
 	}
 }
 
-atributo* buscarAtributo(string nombre)
+Atributo* buscarAtributo(string nombre)
 {
-	list<atributo>::iterator itAtr = atributos.begin();
+	list<Atributo>::iterator itAtr = atributos.begin();
 	while (itAtr != atributos.end() && (*itAtr).nombre != nombre)
 		itAtr++;
 
@@ -68,21 +68,21 @@ bool comprobarValorNominal(string valor, list<string>& valores)
 	return false;
 }
 
-bool comprobarAntecedente(antecedente ant, list<antecedente> hechos)
+bool comprobarAntecedente(Antecedente ant, list<Antecedente> hechos)
 {
-	list<antecedente>::iterator itHechos;
+	list<Antecedente>::iterator itHechos;
 	for (itHechos = hechos.begin(); itHechos != hechos.end(); itHechos++)
 	{
 		if ((*itHechos).izq == ant.izq)
 		{
-			// Buscamos el atributo al que corresponda
-			atributo* a = buscarAtributo(ant.izq);
+			// Buscamos el Atributo al que corresponda
+			Atributo* a = buscarAtributo(ant.izq);
 			if (a != NULL && a->tipo == NU)
 			{
 				int nAntecedente = stoi(ant.der);
 				int nHecho = stoi((*itHechos).der);
 
-				// Comprobamos si el antecedente se cumple o no
+				// Comprobamos si el Antecedente se cumple o no
 				switch (ant.op)
 				{
 				case menor:
@@ -119,25 +119,25 @@ bool comprobarAntecedente(antecedente ant, list<antecedente> hechos)
 	return false;
 }
 
-bool contenida(string meta, list<antecedente> hechos)
+bool contenida(string meta, list<Antecedente> hechos)
 {
-	list<antecedente>::iterator it = hechos.begin();
+	list<Antecedente>::iterator it = hechos.begin();
 	while (it != hechos.end() && (*it).izq != meta)
 		it++;
 	if (it == hechos.end()) return false;
 	return true;
 }
 
-list<regla> equiparar(list<regla> reglas, list<antecedente> hechos)
+list<Regla> equiparar(list<Regla> reglas, list<Antecedente> hechos)
 {
-	list<regla> posibilidades;
-	list<regla>::iterator itReg;
-	list<antecedente>::iterator itAnt;
+	list<Regla> posibilidades;
+	list<Regla>::iterator itReg;
+	list<Antecedente>::iterator itAnt;
 
 	for (itReg = reglas.begin(); itReg != reglas.end(); itReg++)
 	{
 		int cont = 0;
-		// Comprobamos si cada antecedente se cumple
+		// Comprobamos si cada Antecedente se cumple
 		for (itAnt = (*itReg).antecedentes.begin(); itAnt != (*itReg).antecedentes.end(); itAnt++)
 		{
 			if (comprobarAntecedente(*itAnt, hechos))
@@ -145,7 +145,7 @@ list<regla> equiparar(list<regla> reglas, list<antecedente> hechos)
 				cont++;
 			}
 		}
-		// Si todos los antecedentes se han cumplido la regla se añade
+		// Si todos los antecedentes se han cumplido la Regla se añade
 		if (cont == (*itReg).antecedentes.size())
 		{
 			posibilidades.push_back((*itReg));
@@ -154,13 +154,13 @@ list<regla> equiparar(list<regla> reglas, list<antecedente> hechos)
 	return posibilidades;
 }
 
-regla resolver(list<regla>& conjuntoConflicto)
+Regla resolver(list<Regla>& conjuntoConflicto)
 {
-	list<regla>::iterator it = conjuntoConflicto.begin();
-	regla r = *it;
+	list<Regla>::iterator it = conjuntoConflicto.begin();
+	Regla r = *it;
     it++;
 
-	// Buscamos la regla con la mayor prioridad
+	// Buscamos la Regla con la mayor prioridad
     while (it != conjuntoConflicto.end())
 	{
 		if ((*it).prioridad > r.prioridad) r = *it;
@@ -176,18 +176,18 @@ string getRegla(int n)
 	return *it;
 }
 
-list<antecedente> getBH()
+list<Antecedente> getBH()
 {
 	return hechos;
 }
 
-void reconstruirSolucion(list<regla>& reglasAplicadas)
+void reconstruirSolucion(list<Regla>& reglasAplicadas)
 {
-	list<regla>::reverse_iterator it;
+	list<Regla>::reverse_iterator it;
 	for (it = reglasAplicadas.rbegin(); it != reglasAplicadas.rend();)
 	{
-		// Si la consecuencia de la regla está en la base de hechos inicial, la 
-		// regla no aporta nada y se elimina
+		// Si la consecuencia de la Regla está en la base de hechos inicial, la
+		// Regla no aporta nada y se elimina
 		if (find(hechos.begin(), hechos.end(), (*it).consecuente) != hechos.end())
 		{
 			reglasAplicadas.erase(--(it.base()));
@@ -198,8 +198,8 @@ void reconstruirSolucion(list<regla>& reglasAplicadas)
 			if (it != reglasAplicadas.rbegin())
 			{
 				bool encontrada = false;
-				list<regla>::reverse_iterator itReg = reglasAplicadas.rbegin();
-				list<antecedente>::iterator itPrem;
+				list<Regla>::reverse_iterator itReg = reglasAplicadas.rbegin();
+				list<Antecedente>::iterator itPrem;
 
 				while (itReg != reglasAplicadas.rend() && !encontrada)
 				{
@@ -215,7 +215,7 @@ void reconstruirSolucion(list<regla>& reglasAplicadas)
 					itReg++;
 				}
 
-				// Si ninguna otra regla usa su consecuencia esa regla no sirve
+				// Si ninguna otra Regla usa su consecuencia esa Regla no sirve
 				if (!encontrada)
 				{
 					reglasAplicadas.erase(--(it.base()));
@@ -230,13 +230,13 @@ void reconstruirSolucion(list<regla>& reglasAplicadas)
 	}
 }
 
-list<regla> SBR()
+list<Regla> SBR()
 {
-	list<antecedente> BH = hechos;
-	list<regla> conjuntoConflito;
-	list<regla> reglasAplicadas;
-	list<regla> antecedentes = reglas;
-	antecedente nuevosHechos;
+	list<Antecedente> BH = hechos;
+	list<Regla> conjuntoConflito;
+	list<Regla> reglasAplicadas;
+	list<Regla> antecedentes = reglas;
+	Antecedente nuevosHechos;
 
 	do
 	{
@@ -246,7 +246,7 @@ list<regla> SBR()
 
 		if (conjuntoConflito.size() != 0)
 		{
-			regla r = resolver(conjuntoConflito);
+			Regla r = resolver(conjuntoConflito);
 			nuevosHechos = r.consecuente;
 			reglasAplicadas.push_back(r);
 			addConsecuencia(BH, nuevosHechos);

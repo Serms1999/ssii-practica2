@@ -6,42 +6,42 @@
 #include<list>
 using namespace std;
 
-// Tipos de atributo
+// Tipos de Atributo
 enum type { NU = 1, Nom = 2 };
 enum operation { menor = 1, menorI = 2, mayor = 3, mayorI = 4, igual = 5 };
 
 // Definicion de la estructuras
-struct antecedente
+struct Antecedente
 {
 	string izq;
 	string der;
 	operation op;
 };
 
-// Definimos el consecuente igual que un antecedente
-typedef antecedente consecuente;
+// Definimos el Consecuente igual que un Antecedente
+typedef Antecedente Consecuente;
 
-struct regla
+struct Regla
 {
 	int numRegla;
-	list<antecedente> antecedentes;
-	consecuente consecuente;
+	list<Antecedente> antecedentes;
+	Consecuente consecuente;
 	int prioridad;
 };
 
-struct atributo
+struct Atributo
 {
 	string nombre;
 	type tipo;
 	list<string> valores;
 };
 
-inline bool operator==(const regla& r1, const regla& r2)
+inline bool operator==(const Regla& r1, const Regla& r2)
 {
 	return r1.numRegla == r2.numRegla;
 }
 
-inline bool operator==(const antecedente& p1, const antecedente& p2)
+inline bool operator==(const Antecedente& p1, const Antecedente& p2)
 {
 	return (p1.izq == p2.izq) && (p1.der == p2.der) && (p1.op == p2.op);
 }
@@ -51,19 +51,19 @@ inline bool operator==(const antecedente& p1, const antecedente& p2)
 // Devuelve el operador asociado a un string
 operation stringToOP(string s);
 
-// Devuelve un string dado un consecuente
-string consecuenteToString(consecuente c);
+// Devuelve un string dado un Consecuente
+string consecuenteToString(Consecuente c);
 
 // Rellena los conjuntos reglas, reglasString, atributos, 
 // hechos y el objetivo con los valores dados en BC, BH y conf
-void leerFicheros(string BC, string BH, string conf, 
-	list<regla>& reglas, list<string>& reglasString, list<atributo>& atributos, list<antecedente>& hechos, string& objetivo);
+void leerFicheros(string BC, string BH, string conf,
+                  list<Regla>& reglas, list<string>& reglasString, list<Atributo>& atributos, list<Antecedente>& hechos, string& objetivo);
 
-// Da valores a los atributos de un antecedente p con los datos del string s
-void leerAntecedente(antecedente& p, string s);
+// Da valores a los atributos de un Antecedente p con los datos del string s
+void leerAntecedente(Antecedente& p, string s);
 
-void leerBaseConocimiento(string fichero, list<regla>& reglas, list<string>& reglasString);
+void leerBaseConocimiento(string fichero, list<Regla>& reglas, list<string>& reglasString);
 
-void leerBaseHechos(string fichero, list<antecedente>& hechos);
+void leerBaseHechos(string fichero, list<Antecedente>& hechos);
 
-void leerFicheroConf(string fichero, list<atributo>& atributos, string& objetivo, list<regla>& reglas);
+void leerFicheroConf(string fichero, list<Atributo>& atributos, string& objetivo, list<Regla>& reglas);

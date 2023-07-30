@@ -1,15 +1,15 @@
 #include "Funciones.hpp"
 
 extern string dominio;
-extern list<antecedente> hechos;
+extern list<Antecedente> hechos;
 extern string objetivo;
 extern string nombreBH;
-list<regla> reglasAplicadas;
+list<Regla> reglasAplicadas;
 
-string BHToString(list<antecedente>& BH)
+string BHToString(list<Antecedente>& BH)
 {
 	string s = "";
-	list<antecedente>::iterator it;
+	list<Antecedente>::iterator it;
 	for (it = BH.begin(); it != BH.end(); it++)
 	{
 		s += consecuenteToString(*it) + "\n";
@@ -23,7 +23,7 @@ void crearFichero1()
 	string nombre = "Salida1" + nombreBH + ".txt";
 	salida1.open(nombre, ios::out | ios::trunc);
 
-	list<antecedente> BH = hechos;
+	list<Antecedente> BH = hechos;
 
 	salida1 << "Dominio de la aplicacion: " << dominio << endl;
 	salida1 << "Objetivo: " << objetivo << endl;
@@ -38,12 +38,12 @@ void crearFichero1()
 		return;
 	}
 
-	list<regla>::iterator it = reglasAplicadas.begin();
+	list<Regla>::iterator it = reglasAplicadas.begin();
 
 	do
 	{
 		salida1 << "----------------------------------------------------------------" << endl;
-		salida1 << "Se aplica la regla:" << endl << getRegla((*it).numRegla) << endl;
+		salida1 << "Se aplica la Regla:" << endl << getRegla((*it).numRegla) << endl;
 
 		addConsecuencia(BH, (*it).consecuente);
 
@@ -71,7 +71,7 @@ void crearFichero2()
 	ofstream salida2;
 	string nombre = "Salida2" + nombreBH + ".txt";
 	salida2.open(nombre, ios::out | ios::trunc);
-	list<regla>::iterator it;
+	list<Regla>::iterator it;
 
 	salida2 << "Dominio de la aplicacion: " << dominio << endl;
 	salida2 << "Razonamiento:" << endl;
